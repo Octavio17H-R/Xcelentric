@@ -1,14 +1,27 @@
+function ajustarCanvas(canvas) {
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+
+    // ancho y alto del contenedor
+    const rect = canvas.parentNode.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    ctx.scale(dpr, dpr);
+}
+
 function dibujarGraficaCrecimiento5Anios() {
-    const ctx = document.getElementById('graficaGanancias').getContext('2d');
+    const canvas = document.getElementById('graficaGanancias');
+    ajustarCanvas(canvas);
+    const ctx = canvas.getContext('2d');
 
     const escenarios = ['p','b','o'];
     const labels = ['Mes 1', 'Mes 12', 'Mes 24', 'Mes 36', 'Mes 48', 'Mes 60'];
 
-    // Colores ajustados para buena visibilidad
     const colores = {
-        p: { border: '#F9D342', bg: '#FFF9C4', point: '#F9A825' }, // amarillo principal
-        b: { border: '#FFB74D', bg: '#FFE0B2', point: '#FF9800' }, // amarillo secundario/naranja suave
-        o: { border: '#90A4AE', bg: '#CFD8DC', point: '#607D8B' }  // gris-azulado
+        p: { border: '#F9D342', bg: '#FFF9C4', point: '#F9A825' },
+        b: { border: '#FFB74D', bg: '#FFE0B2', point: '#FF9800' },
+        o: { border: '#90A4AE', bg: '#CFD8DC', point: '#607D8B' }
     };
 
     const datasets = escenarios.map(s => {
@@ -18,14 +31,13 @@ function dibujarGraficaCrecimiento5Anios() {
         const data = [];
         for(let i=0; i<6; i++){
             if(i < 5){
-                data.push(utilidadMensual * 12 * (i+1)); // acumulado anual
+                data.push(utilidadMensual * 12 * (i+1));
             } else {
-                data.push(exit); // exit final
+                data.push(exit);
             }
         }
 
-       const nombresEscenario = { p: 'Pesimista', b: 'Base', o: 'Optimista' };
-
+        const nombresEscenario = { p: 'Pesimista', b: 'Base', o: 'Optimista' };
         return {
             label: nombresEscenario[s],
             data,
@@ -46,11 +58,12 @@ function dibujarGraficaCrecimiento5Anios() {
         data: { labels, datasets },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
                     text: 'Proyección de ganancias a 5 años',
-                    color: '#37474F', // gris oscuro más legible
+                    color: '#37474F',
                     font: { size: 16, weight: '700' }
                 },
                 legend: {
@@ -78,7 +91,7 @@ function dibujarGraficaCrecimiento5Anios() {
                         color: '#37474F',
                         font: { size: 12, weight: '600' }
                     },
-                    ticks: { color: '#607D8B' } // gris medio para ticks
+                    ticks: { color: '#607D8B' }
                 },
                 x: {
                     title: {

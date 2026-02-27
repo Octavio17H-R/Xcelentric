@@ -10,14 +10,22 @@
 <body>
 <div class="container">
 <div class="header-title">
+    <div class="title-logo-left">
+        <img src="Logo Xcelentric.png" alt="Logo Xcelentric">
+    </div>
 
-    <div class="title-logo">
-    <img src="Logo Xcelentric.png" >
+<div class="title-text">
+    Calculadora de Rentabilidad Xcelentric
+</div>
+
+    <div class="title-logo-right">
+        <img src="https://xcelentric.com/wp-content/uploads/2024/08/abeja_v5-300x280.png" alt="Logo Abeja">
     </div>
 </div>
 <!-- ================= RESUMEN PRINCIPAL – MODELOS DE INGRESO ================= -->
 <div class="summary-box">
     <h3>¿CÓMO GENERA DINERO LA COMPRA DE CARGADORES?</h3>
+
 <div class="scenario-section-box">
     <h3 class="scenario-title">Número de Cargadores</h3>
     <div class="scenario-controls">
@@ -43,11 +51,14 @@
         </div>
     </div>
 </div>
+<div class="summary-header">
+    <small class="currency-label">TIPO DE MONEDA: MXN</small>
+</div>
     <div class="triple-summary">
 
         <!-- ESCENARIO 1 -->
         <div class="summary-card">
-            <h4>Venta de Electricidad</h4>
+            <h4>1. Venta de Electricidad</h4>
             <p class="desc">Flujo mensual recurrente por uso de cargadores</p>
 
             <table>
@@ -62,7 +73,7 @@
 
         <!-- ESCENARIO 2 -->
         <div class="summary-card highlight">
-            <h4>Plusvalía del Activo (Exit)</h4>
+            <h4>2. Plusvalía del Activo (Exit)</h4>
             <p class="desc">Incremento del valor del estacionamiento equipado</p>
 
             <table>
@@ -82,7 +93,7 @@
 
         <!-- ESCENARIO 3 -->
         <div class="summary-card">
-            <h4>Comisiones y Referidos</h4>
+            <h4>3. Comisiones y Referidos</h4>
             <p class="desc">Ingresos paralelos por red comercial</p>
 
             <table>
@@ -99,7 +110,7 @@
 </div>
 <!-- Contenedor del gráfico -->
 <div class="grafico-box">
-    <canvas id="graficaGanancias" width: 100%; height: 400px;></canvas>
+    <canvas id="graficaGanancias"></canvas>
 </div>
     <button class="reset-btn" onclick="resetEditable()">Resetear valores</button>
     <!-- ================= RESUMEN ESTRATÉGICO DEL COMPRADOR ================= -->
@@ -108,7 +119,7 @@
 <table class="main-table">
         <thead>
             <tr class="big-divider">
-                <td colspan="5">VENTA DE ELECTRICIDAD</td>
+                <td colspan="5">1. VENTA DE ELECTRICIDAD</td>
             </tr>
             <tr>
                 <th>CONCEPTO</th>
@@ -249,7 +260,7 @@
 <table class="main-table">
         <thead>
             <tr class="big-divider">
-                <td colspan="5">RESULTADOS ESTRATÉGICOS Y CRECIMIENTO</td>
+                <td colspan="5">2. RESULTADOS ESTRATÉGICOS Y CRECIMIENTO</td>
             </tr>
             <tr>
                 <th>CONCEPTO</th>
@@ -382,7 +393,7 @@
 <table class="main-table">
         <thead>
             <tr class="big-divider">
-                <td colspan="5">COMISIONES</td>
+                <td colspan="5">3. COMISIONES</td>
             </tr>    
             <tr>
                 <th>CONCEPTO</th>
