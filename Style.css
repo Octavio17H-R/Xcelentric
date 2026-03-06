@@ -1,10 +1,11 @@
 @font-face {
     font-family: 'XcelentricFont';
-    src: url('/fonts/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+    /* Quitamos la diagonal inicial para que busque la carpeta fonts 
+       en la misma ubicación donde está el archivo CSS */
+    src: url('fonts/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
 }
-
 :root {
     --yellow: #f4c430;          /* Amarillo Xcelentric */
     --yellow-soft: #fff4cc;
