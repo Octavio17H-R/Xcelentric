@@ -387,7 +387,8 @@ tbody td:nth-child(5) {
 .scenario-controls {
     display: flex;
     justify-content: center; /* centra horizontalmente */
-    gap: 14px;
+    gap: 6px;
+    margin-top: 5px;
 }
 
 /* Cada bloque de control */
@@ -395,10 +396,10 @@ tbody td:nth-child(5) {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Empuja el texto a los bordes */
-    gap: 10px;                      /* Espacio entre etiqueta, slider y valor */
+    gap: 8px;                      /* Espacio entre etiqueta, slider y valor */
     width: 100%;                    /* Ocupa todo el ancho de la tarjeta */
     box-sizing: border-box;         /* Importante: incluye el padding en el ancho */
-    padding: 8px 12px;
+    padding: 4px 10px;
     background: #ffffff;
     border: 1px solid #f3e7b0;
     border-radius: 10px;
@@ -406,7 +407,7 @@ tbody td:nth-child(5) {
 
 /* Label dentro de control */
 .sc-item .sc-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     min-width: 60px; /* ancho mínimo para alinear */
 }
@@ -425,8 +426,8 @@ tbody td:nth-child(5) {
 
 /* Botones */
 .sc-item button {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     padding: 0;
     border-radius: 6px;
     font-weight: 700;
@@ -443,19 +444,19 @@ tbody td:nth-child(5) {
 }
 /* Recuadro que encierra los controles */
 .scenario-section-box {
-    padding: 14px 18px;
+    padding: 10px 15px;
     border: 1px solid #f1e3a0;
     border-radius: 14px;
     background: linear-gradient(180deg,#fffdf5,#ffffff);
     text-align: center;
     box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     width: fit-content;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 35px auto;
 }
 /* Título dentro del recuadro */
 .scenario-section-box .scenario-title {
-    margin-bottom: 4px;
-    font-size: 14px;
+    margin-bottom: 2px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--gray-800);
 }
@@ -537,7 +538,7 @@ tbody td:nth-child(5) {
 /* Número al lado del slider */
 .slider-value{
     font-weight:800;
-    font-size:13px;
+    font-size:12px;
     min-width:40px;
     text-align:center;
     color: var(--gray-800);
