@@ -76,26 +76,28 @@
         </div>
     </div>
     </div>
-<div class="scenario-section-box">
-    <h3 class="scenario-title">Costo de Electricidad (MXN/kWh)</h3>
-    <div class="scenario-controls">
-        <div class="sc-item">
-            <span class="sc-label">Pesimista</span>
-            <input type="range" id="ctrl_v5_p" min="0" max="20" step="0.1" value="4.90" oninput="syncCosto('p', this.value)">
-            <span id="val_v5_p" class="slider-value">4.90</span>
-        </div>
-        <div class="sc-item">
-            <span class="sc-label">Base</span>
-            <input type="range" id="ctrl_v5_b" min="0" max="20" step="0.1" value="3.90" oninput="syncCosto('b', this.value)">
-            <span id="val_v5_b" class="slider-value">3.90</span>
-        </div>
-        <div class="sc-item">
-            <span class="sc-label">Optimista</span>
-            <input type="range" id="ctrl_v5_o" min="0" max="20" step="0.1" value="2.90" oninput="syncCosto('o', this.value)">
-            <span id="val_v5_o" class="slider-value">2.90</span>
+    <div class="scenario-section-box">
+        <h3 class="scenario-title">Valor Inicial de Cajón de Estacionamiento</h3>
+        <div class="scenario-controls">
+            <div class="sc-item">
+                <span class="sc-label">Pesimista</span>
+                <input type="range" id="ctrl_v9_p" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('p', this.value)">
+                <span id="val_v9_p" class="slider-value">$100,000</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Base</span>
+                <input type="range" id="ctrl_v9_b" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('b', this.value)">
+                <span id="val_v9_b" class="slider-value">$100,000</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Optimista</span>
+                <input type="range" id="ctrl_v9_o" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('o', this.value)">
+                <span id="val_v9_o" class="slider-value">$100,000</span>
+            </div>
         </div>
     </div>
-</div>
+
+
     <div class="scenario-section-box">
         <h3 class="scenario-title">Precio de Venta (MXN/kWh)</h3>
         <div class="scenario-controls">
@@ -137,26 +139,26 @@
         </div>
     </div>
 </div>
-    <div class="scenario-section-box">
-        <h3 class="scenario-title">Valor Inicial de Cajón de Estacionamiento</h3>
-        <div class="scenario-controls">
-            <div class="sc-item">
-                <span class="sc-label">Pesimista</span>
-                <input type="range" id="ctrl_v9_p" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('p', this.value)">
-                <span id="val_v9_p" class="slider-value">$100,000</span>
-            </div>
-            <div class="sc-item">
-                <span class="sc-label">Base</span>
-                <input type="range" id="ctrl_v9_b" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('b', this.value)">
-                <span id="val_v9_b" class="slider-value">$100,000</span>
-            </div>
-            <div class="sc-item">
-                <span class="sc-label">Optimista</span>
-                <input type="range" id="ctrl_v9_o" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('o', this.value)">
-                <span id="val_v9_o" class="slider-value">$100,000</span>
-            </div>
+<div class="scenario-section-box">
+    <h3 class="scenario-title">Costo de Electricidad (MXN/kWh)</h3>
+    <div class="scenario-controls">
+        <div class="sc-item">
+            <span class="sc-label">Pesimista</span>
+            <input type="range" id="ctrl_v5_p" min="0" max="20" step="0.1" value="4.90" oninput="syncCosto('p', this.value)">
+            <span id="val_v5_p" class="slider-value">4.90</span>
+        </div>
+        <div class="sc-item">
+            <span class="sc-label">Base</span>
+            <input type="range" id="ctrl_v5_b" min="0" max="20" step="0.1" value="3.90" oninput="syncCosto('b', this.value)">
+            <span id="val_v5_b" class="slider-value">3.90</span>
+        </div>
+        <div class="sc-item">
+            <span class="sc-label">Optimista</span>
+            <input type="range" id="ctrl_v5_o" min="0" max="20" step="0.1" value="2.90" oninput="syncCosto('o', this.value)">
+            <span id="val_v5_o" class="slider-value">2.90</span>
         </div>
     </div>
+</div>
 
 </div>
 
@@ -502,7 +504,7 @@
                 <td><input id="v7_2_p" class="read"></td>
                 <td><input id="v7_2_b" class="read"></td>
                 <td><input id="v7_2_o" class="read"></td>
-                <td></td>
+                <td>%</td>
             </tr>
 
             <!-- 8. EXIT -->
@@ -549,21 +551,21 @@
             <td><input id="v9_1_p" class="read"></td>
             <td><input id="v9_1_b" class="read"></td>
             <td><input id="v9_1_o" class="read"></td>
-            <td></td>
+            <td>%</td>
             </tr>
             <tr>
             <td class="lbl">Tiempo de retorno</td>
             <td><input id="v9_2_p" class="read"></td>
             <td><input id="v9_2_b" class="read"></td>
             <td><input id="v9_2_o" class="read"></td>
-            <td></td>
+            <td>Meses</td>
             </tr>
             <tr>
             <td class="lbl">Valor Inicial</td>
             <td><input type="number" id="v9_3_p" class="edit" value="100000"></td>
             <td><input type="number" id="v9_3_b" class="edit" value="100000"></td>
             <td><input type="number" id="v9_3_o" class="edit" value="100000"></td>
-            <td>100K por plaza - parking vacío</td>
+            <td>Parking vacío</td>
             </tr>
             <tr>
             <td class="lbl">Valor Final x Plaza Equipada</td>
@@ -604,7 +606,7 @@
             <td><input id="v10_1_p" class="read"></td>
             <td><input id="v10_1_b" class="read"></td>
             <td><input id="v10_1_o" class="read"></td>
-            <td>$500 * Núm_Cargadores</td>
+            <td>$500 + Número de Tomas</td>
             </tr>
             <tr>
             <td class="lbl">Com. Variable kWh (2% s/Venta)</td>
@@ -625,7 +627,7 @@
             <td><input id="v10_4_p" class="read"></td>
             <td><input id="v10_4_b" class="read"></td>
             <td><input id="v10_4_o" class="read"></td>
-            <td>$200 * Numero de Tomas</td>
+            <td>$200 + Número de Tomas</td>
             </tr>
             <tr class="total">
             <td class="lbl">TOTAL COMISIONES MES</td>
