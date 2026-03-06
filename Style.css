@@ -50,10 +50,10 @@ body {
 
 /* Headers */
 th {
-    background: var(--gray-800);
+    background: var(black);
     color: var(--white);
     font-weight: 600;
-    font-size: 11px;
+    font-size: 14px;
     padding: 10px;
     border: none;
 }
@@ -61,7 +61,7 @@ th {
 /* Celdas */
 td {
     padding: 8px 10px;
-    border-bottom: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(black);
 }
 
 /* Secciones */
@@ -480,9 +480,9 @@ tbody td:nth-child(5) {
     color: #252525;
     text-align: center;
     letter-spacing: 0.5px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     font-family: 'XcelentricFont', Arial, sans-serif;
-    text-transform: uppercase;
+
 }
 
 /* ===== SLIDER XCELENTRIC PRO ===== */
@@ -624,16 +624,16 @@ line-height:1.6;
     justify-content: space-between;
     font-size: 0.85rem;
     margin-bottom: 4px;
-    color: #555;
+    color: #000000;
 }
 
 .detail-row strong {
-    color: #2c3e50;
+    color: #000000;
     font-weight: 700;
 }
 
 .summary-card.highlight .detail-row {
-    color: #444; /* Mejor contraste en la tarjeta resaltada */
+    color: #000000; /* Mejor contraste en la tarjeta resaltada */
 }
 .comparison-container {
     margin: 30px 0;
@@ -645,10 +645,9 @@ line-height:1.6;
 
 .comparison-title {
     text-align: center;
-    color: #2c3e50;
+    color: #000000;
     margin-bottom: 20px;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+    font-size: 4rem;
 }
 
 .comparison-table {
@@ -658,14 +657,14 @@ line-height:1.6;
 }
 
 .comparison-table th, .comparison-table td {
-    padding: 12px;
+    padding: 16px;
     text-align: center;
     border-bottom: 1px solid #eee;
 }
 
 .comparison-table th {
     background: #f8f9fa;
-    color: #666;
+    color: #000000;
     font-weight: 600;
 }
 
@@ -683,4 +682,54 @@ line-height:1.6;
     font-weight: 500;
     color: #555;
     width: 30%;
+}
+.title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Título principal: Grande y Negritas */
+.title-main {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gray-800); /* Gris muy oscuro casi negro */
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+/* Subtítulo: Tamaño mediano y peso normal */
+.title-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: black; /* Gris medio profesional */
+    margin-bottom: 6px;
+}
+
+/* Disclaimer: El más pequeño y gris claro */
+.title-disclaimer {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gray-600); /* Gris claro */
+}
+/* Unifica la primera columna de la tabla comparativa */
+.comparison-table th:first-child,
+.comparison-table td:first-child {
+    text-align: left !important;
+    padding-left: 24px;
+    color: var(--gray-600);
+}
+
+/* Unifica las columnas de escenarios (Pesimista, Base, Optimista) */
+.comparison-table th:not(:first-child),
+.comparison-table td:not(:first-child) {
+    text-align: center !important;
+    width: 22%; /* Asegura que las columnas midan lo mismo */
+}
+
+/* Título de la comparativa (Corrección de tamaño gigante) */
+.comparison-title {
+    font-size: 24px !important; /* Estaba en 4rem, lo bajamos a algo legible */
+    font-weight: 800;
+    text-transform: none; /* Quitamos las mayúsculas forzadas */
+    color: var(--gray-800);
 }

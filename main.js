@@ -3,15 +3,22 @@
     
     function calculate() {
         ['p', 'b', 'o'].forEach(s => {
-            // 1. Premisas
-            const n = parseFloat(document.getElementById(`v1_${s}`).value) || 0;
-            const k = parseFloat(document.getElementById(`v3_${s}`).value) || 0;
+            // 1. Premisas y Cálculos de Venta
+            const n = parseFloat(document.getElementById(`v1_${s}`).value) || 0;    // Tomas
+            const vel = parseFloat(document.getElementById(`v11_${s}`).value) || 0; // Velocidad de carga (kW)
+            const util2 = parseFloat(document.getElementById(`v2_${s}`).value) || 0; // % de Utilización diaria
+
+            // Calculamos la venta mensual (k) basada en: Potencia * 24h * % Utilización * 30 días
+            const k = vel * 24 * (util2 / 100) * 30; 
+            document.getElementById(`v3_${s}`).value = k.toFixed(2); // Mostramos el kWh/mes calculado
+
             const pvp = parseFloat(document.getElementById(`v4_${s}`).value) || 0;
             const ce = parseFloat(document.getElementById(`v5_${s}`).value) || 0;
             const period = parseFloat(document.getElementById(`v9_${s}`).value) || 60;
-            
+
+            // Cálculo de Ingresos y Margen
             const ingE = n * k * pvp;
-            document.getElementById(`v6_${s}`).value = (((pvp-ce)/pvp)*100).toFixed(2) + '%';
+            document.getElementById(`v6_${s}`).value = pvp > 0 ? (((pvp - ce) / pvp) * 100).toFixed(2) + '%' : '0.00%';
             document.getElementById(`v10_${s}`).value = fmt(ingE);
 
             // 2. CAPEX
@@ -222,21 +229,54 @@ document.getElementById('det_com_var_b').textContent = document.getElementById('
         }
 
         
-    function resetEditable() {
-    // Resetea inputs editables normales
-    document.querySelectorAll('.edit').forEach(input => input.value = input.defaultValue);
+function resetEditable() {
+    // 1. Resetea todos los inputs de la tabla a sus valores por defecto (HTML original)
+    document.querySelectorAll('.read, .edit').forEach(input => {
+        // Usamos defaultValue si existe, o el valor que definamos como base
+        if (input.id.includes('v11')) { 
+            // Caso especial para velocidad de carga si no tiene defaultValue
+            input.value = input.id.endsWith('_p') ? 7.4 : (input.id.endsWith('_b') ? 11 : 22);
+        } else {
+            input.value = input.defaultValue;
+        }
+    });
 
-    // Resetea controles de escenarios
-    document.getElementById('ctrl_p').value = 2;
-    document.getElementById('ctrl_b').value = 4;
-    document.getElementById('ctrl_o').value = 6;
+    // 2. Resetea los Sliders y sus etiquetas visuales
+    ['p', 'b', 'o'].forEach(s => {
+        // --- Escenario (Número de tomas v1) ---
+        const defTomas = (s === 'p') ? 2 : (s === 'b') ? 4 : 6;
+        if(document.getElementById(`ctrl_${s}`)) {
+            document.getElementById(`ctrl_${s}`).value = defTomas;
+            document.getElementById(`val_${s}`).textContent = defTomas;
+            document.getElementById(`v1_${s}`).value = defTomas;
+        }
 
-    // Sincroniza los escenarios con la tabla
-    syncScenario('p', 2);
-    syncScenario('b', 4);
-    syncScenario('o', 6);
+        // --- Velocidad de Carga (v11) ---
+        const defVel = (s === 'p') ? 7.4 : (s === 'b') ? 22 : 28;
+        if(document.getElementById(`ctrl_v11_${s}`)) {
+            document.getElementById(`ctrl_v11_${s}`).value = defVel;
+            document.getElementById(`val_v11_${s}`).textContent = defVel + " kW";
+            document.getElementById(`v11_${s}`).value = defVel;
+        }
 
-    // Recalcula todo lo demás
+        // --- Utilización (v2) ---
+        const defUtil = (s === 'p') ? 3 : (s === 'b') ? 5 : 7;
+        if(document.getElementById(`ctrl_v2_${s}`)) {
+            document.getElementById(`ctrl_v2_${s}`).value = defUtil;
+            document.getElementById(`val_v2_${s}`).textContent = defUtil + "%";
+            document.getElementById(`v2_${s}`).value = defUtil;
+        }
+
+        // --- Valor de Plaza (v9_3) ---
+        const defPlaza = 100000;
+        if(document.getElementById(`ctrl_v9_${s}`)) {
+            document.getElementById(`ctrl_v9_${s}`).value = defPlaza;
+            document.getElementById(`val_v9_${s}`).textContent = '$' + defPlaza.toLocaleString('es-MX');
+            document.getElementById(`v9_3_${s}`).value = defPlaza;
+        }
+    });
+
+    // 3. Recalcula todo con los valores reseteados
     calculate();
 }
 
@@ -408,4 +448,22 @@ calculate();
 }
     window.onload = calculate;
 
-    
+    // Sincronizar Slider de Velocidad de Carga (v11)
+function syncVelocidad(suffix, value) {
+    value = parseFloat(value);
+    // Actualiza el campo oculto de la tabla
+    document.getElementById(`v11_${suffix}`).value = value;
+    // Actualiza el texto debajo del slider
+    document.getElementById(`val_v11_${suffix}`).textContent = value + " kW";
+    calculate();
+}
+
+// Sincronizar Slider de % de Utilización (v2)
+function syncUtilizacion(suffix, value) {
+    value = parseFloat(value);
+    // Actualiza el campo oculto de la tabla
+    document.getElementById(`v2_${suffix}`).value = value;
+    // Actualiza el texto debajo del slider
+    document.getElementById(`val_v2_${suffix}`).textContent = value + "%";
+    calculate();
+}

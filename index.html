@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="Style.css">
     <meta charset="UTF-8">
-    <title>Xcelentric - Calculadora Financiera Pro</title>
+    <title>Xcelentric - Calculadora</title>
 
 </head>
 
@@ -14,8 +14,10 @@
         <img src="Logo Xcelentric.png" alt="Logo Xcelentric">
     </div>
 
-<div class="title-text">
-    Calculadora de Rentabilidad
+<div class="title-container">
+    <div class="title-main">Calculadora de Rentabilidad</div>
+    <div class="title-subtitle">Compara fácilmente escenarios para encontrar la inversión adecuada para tu negocio</div>
+    <div class="title-disclaimer">Para fines demostrativos únicamente</div>
 </div>
 
     <div class="title-logo-right">
@@ -24,9 +26,12 @@
 </div>
 <!-- ================= RESUMEN PRINCIPAL – MODELOS DE INGRESO ================= -->
 <div class="summary-box">
+    <!-- HEADER -->
 
-    <h3>Premisas de Financieras</h3>
-
+    <div class="summary-header">
+        <h3>Premisas de Financieras</h3>
+        <small class="currency-label">Tipo de Moneda: MXN</small>
+    </div>
 <div class="simulation-controls">
 
     <div class="scenario-section-box">
@@ -91,12 +96,50 @@
             </div>
         </div>
     </div>
+    <div class="scenario-section-box">
+    <h3 class="scenario-title">Velocidad de Carga (kW)</h3>
+    <div class="scenario-controls">
+        <div class="sc-item">
+            <span class="sc-label">Pesimista</span>
+            <input type="range" id="ctrl_v11_p" min="3.6" max="500" step="0.1" value="7.4" oninput="syncVelocidad('p', this.value)">
+            <span id="val_v11_p" class="slider-value">7.4 kW</span>
+        </div>
+        <div class="sc-item">
+            <span class="sc-label">Base</span>
+            <input type="range" id="ctrl_v11_b" min="3.6" max="500" step="0.1" value="11" oninput="syncVelocidad('b', this.value)">
+            <span id="val_v11_b" class="slider-value">22 kW</span>
+        </div>
+        <div class="sc-item">
+            <span class="sc-label">Optimista</span>
+            <input type="range" id="ctrl_v11_o" min="3.6" max="500" step="0.1" value="22" oninput="syncVelocidad('o', this.value)">
+            <span id="val_v11_o" class="slider-value">28 kW</span>
+        </div>
+    </div>
+</div>
+
+<div class="scenario-section-box">
+    <h3 class="scenario-title">% de Utilización Diaria</h3>
+    <div class="scenario-controls">
+        <div class="sc-item">
+            <span class="sc-label">Pesimista</span>
+            <input type="range" id="ctrl_v2_p" min="1" max="30" step="1" value="3" oninput="syncUtilizacion('p', this.value)">
+            <span id="val_v2_p" class="slider-value">3%</span>
+        </div>
+        <div class="sc-item">
+            <span class="sc-label">Base</span>
+            <input type="range" id="ctrl_v2_b" min="1" max="30" step="1" value="5" oninput="syncUtilizacion('b', this.value)">
+            <span id="val_v2_b" class="slider-value">5%</span>
+        </div>
+        <div class="sc-item">
+            <span class="sc-label">Optimista</span>
+            <input type="range" id="ctrl_v2_o" min="1" max="30" step="1" value="7" oninput="syncUtilizacion('o', this.value)">
+            <span id="val_v2_o" class="slider-value">7%</span>
+        </div>
+    </div>
+</div>
 
 </div>
-    <!-- HEADER -->
-    <div class="summary-header">
-        <small class="currency-label">TIPO DE MONEDA: MXN</small>
-    </div>
+
 
 
     <!-- RESULTADOS -->
@@ -242,17 +285,36 @@
         </thead>
         <tbody>
             <tr class="sec"><td colspan="5">1. PREMISAS DE VENTA</td></tr>
-            <tr><td class="lbl">Número de tomas</td><td><input type="number" id="v1_p" class="read" value="2"></td><td><input type="number" id="v1_b" class="read" value="4"></td><td><input type="number" id="v1_o" class="read" value="6"></td><td>Unidades</td></tr>
-            <tr><td class="lbl">Porcentaje de utilización</td>
-                <td><input id="v2_p" class="read" value="3%"></td>
-                <td><input id="v2_b" class="read" value="5%"></td>
-                <td><input id="v2_o" class="read" value="7%"></td><td>horas uso</td></tr>
-            <tr><td class="lbl">Venta mensual x cargador (kWh)</td>
-                <td><input type="number" id="v3_p" class="read" value="500"></td>
-                <td><input type="number" id="v3_b" class="read" value="1000"></td>
-                <td><input type="number" id="v3_o" class="read" value="1500"></td><td>kWh/mes</td></tr>
-            <tr><td class="lbl">Precio de venta (PVP)</td><td><input type="number" id="v4_p" class="read" value="7.90"></td><td><input type="number" id="v4_b" class="read" value="8.90"></td><td><input type="number" id="v4_o" class="read" value="9.90"></td><td>MXN/kWh</td></tr>
-            <tr><td class="lbl">Costo de compra electricidad</td><td><input type="number" id="v5_p" class="read" value="4.90"></td><td><input type="number" id="v5_b" class="read" value="3.90"></td><td><input type="number" id="v5_o" class="read" value="2.90"></td><td>MXN/kWh</td></tr>
+            <tr>
+                <td class="lbl">Número de tomas</td>
+                <td><input id="v1_p" class="read" value="2"></td>
+                <td><input id="v1_b" class="read" value="4"></td>
+                <td><input id="v1_o" class="read" value="6"></td>
+                <td>Unidades</td>
+            </tr>
+            <tr>
+                <td class="lbl">Velocidad de carga (Potencia)</td>
+                <td><input id="v11_p" class="read" value="7.4"></td>
+                <td><input id="v11_b" class="read" value="22"></td>
+                <td><input id="v11_o" class="read" value="28"></td>
+                <td>kW</td>
+            </tr>
+            <tr>
+                <td class="lbl">Porcentaje de utilización diaria</td>
+                <td><input id="v2_p" class="read" value="3"></td>
+                <td><input id="v2_b" class="read" value="5"></td>
+                <td><input id="v2_o" class="read" value="7"></td>
+                <td>% (0-100)</td>
+            </tr>
+            <tr>
+                <td class="lbl">Venta mensual calculada x cargador</td>
+                <td><input id="v3_p" class="read" readonly></td>
+                <td><input id="v3_b" class="read" readonly></td>
+                <td><input id="v3_o" class="read" readonly></td>
+                <td>kWh/mes</td>
+            </tr>
+            <tr><td class="lbl">Precio de venta (PVP)</td><td><input id="v4_p" class="read" value="7.90"></td><td><input id="v4_b" class="read" value="8.90"></td><td><input id="v4_o" class="read" value="9.90"></td><td>MXN/kWh</td></tr>
+            <tr><td class="lbl">Costo de compra electricidad</td><td><input id="v5_p" class="read" value="4.90"></td><td><input id="v5_b" class="read" value="3.90"></td><td><input id="v5_o" class="read" value="2.90"></td><td>MXN/kWh</td></tr>
             <tr><td class="lbl">Margen simple por electricidad</td><td><input id="v6_p" class="read"></td><td><input id="v6_b" class="read"></td><td><input id="v6_o" class="read"></td><td>%</td></tr>
             <tr><td class="lbl">Ajuste precios por inflación</td>
                 <td><input id="v7_p" class="read" value="6%"></td>
