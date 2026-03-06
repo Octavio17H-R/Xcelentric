@@ -266,7 +266,12 @@ function resetEditable() {
             document.getElementById(`val_v2_${s}`).textContent = defUtil + "%";
             document.getElementById(`v2_${s}`).value = defUtil;
         }
-
+        const defCosto = (s === 'p') ? 4.90 : (s === 'b') ? 3.90 : 2.90;
+        if(document.getElementById(`ctrl_v5_${s}`)) {
+            document.getElementById(`ctrl_v5_${s}`).value = defCosto;
+            document.getElementById(`val_v5_${s}`).textContent =defCosto.toFixed(2);
+            document.getElementById(`v5_${s}`).value = defCosto;
+        }
         // --- Valor de Plaza (v9_3) ---
         const defPlaza = 100000;
         if(document.getElementById(`ctrl_v9_${s}`)) {
@@ -286,15 +291,16 @@ function resetEditable() {
     });
 
 function syncScenario(suffix, value) {
-
+    // 1. Validar el rango (entre 1 y 12 cargadores)
     value = Math.max(1, Math.min(12, Number(value) || 1));
 
+    // 2. Actualizar el slider y el input de la tabla (v1)
     document.getElementById(`ctrl_${suffix}`).value = value;
     document.getElementById(`v1_${suffix}`).value = value;
 
-    // mostrar número al lado del slider
+    // 3. Mostrar el número de cargadores al lado del slider (sin $)
     const label = document.getElementById(`val_${suffix}`);
-    if(label) label.textContent = value;
+    if(label) label.textContent = value; // Solo el número, ej: "6"
 
     calculate();
 }
@@ -465,5 +471,19 @@ function syncUtilizacion(suffix, value) {
     document.getElementById(`v2_${suffix}`).value = value;
     // Actualiza el texto debajo del slider
     document.getElementById(`val_v2_${suffix}`).textContent = value + "%";
+    calculate();
+}
+// Sincronizar Costo de Electricidad (v5)
+function syncCosto(suffix, value) {
+    const val = parseFloat(value);
+    // 1. Actualiza el input en la tabla (v5)
+    const tablaInput = document.getElementById(`v5_${suffix}`);
+    if (tablaInput) tablaInput.value = val.toFixed(2);
+
+    // 2. Actualiza el texto visual del slider
+    const label = document.getElementById(`val_v5_${suffix}`);
+    if (label) label.textContent = val.toFixed(2);
+
+    // 3. Ejecuta el cálculo general
     calculate();
 }
