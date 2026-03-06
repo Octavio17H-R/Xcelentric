@@ -15,7 +15,7 @@
     </div>
 
 <div class="title-text">
-    Calculadora de Rentabilidad Xcelentric
+    Calculadora de Rentabilidad
 </div>
 
     <div class="title-logo-right">
@@ -24,95 +24,206 @@
 </div>
 <!-- ================= RESUMEN PRINCIPAL – MODELOS DE INGRESO ================= -->
 <div class="summary-box">
+
     <h3>¿CÓMO GENERA DINERO LA COMPRA DE CARGADORES?</h3>
 
-<div class="scenario-section-box">
-    <h3 class="scenario-title">Número de Cargadores</h3>
-    <div class="scenario-controls">
-        <div class="sc-item">
-            <span class="sc-label">Pesimista</span>
-            <button onclick="stepScenario('p',-1)">−</button>
-            <input id="ctrl_p" type="number" value="2" min="1" max="12" oninput="syncScenario('p',this.value)">
-            <button onclick="stepScenario('p',1)">+</button>
-        </div>
+<div class="simulation-controls">
 
-        <div class="sc-item">
-            <span class="sc-label">Base</span>
-            <button onclick="stepScenario('b',-1)">−</button>
-            <input id="ctrl_b" type="number" value="4" min="1" max="12" oninput="syncScenario('b',this.value)">
-            <button onclick="stepScenario('b',1)">+</button>
-        </div>
-
-        <div class="sc-item">
-            <span class="sc-label">Optimista</span>
-            <button onclick="stepScenario('o',-1)">−</button>
-            <input id="ctrl_o" type="number" value="6" min="1" max="12" oninput="syncScenario('o',this.value)">
-            <button onclick="stepScenario('o',1)">+</button>
+    <div class="scenario-section-box">
+        <h3 class="scenario-title">Número de Tomas</h3>
+        <div class="scenario-controls">
+            <div class="sc-item">
+                <span class="sc-label">Pesimista</span>
+                <input type="range" id="ctrl_p" min="1" max="12" value="2" oninput="syncScenario('p', this.value)">
+                <span id="val_p" class="slider-value">2</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Base</span>
+                <input type="range" id="ctrl_b" min="1" max="12" value="4" oninput="syncScenario('b', this.value)">
+                <span id="val_b" class="slider-value">4</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Optimista</span>
+                <input type="range" id="ctrl_o" min="1" max="12" value="6" oninput="syncScenario('o', this.value)">
+                <span id="val_o" class="slider-value">6</span>
+            </div>
         </div>
     </div>
+
+    <div class="scenario-section-box">
+        <h3 class="scenario-title">Precio de Venta ($/kWh)</h3>
+        <div class="scenario-controls">
+            <div class="sc-item">
+                <span class="sc-label">Pesimista</span>
+                <input type="range" min="5" max="12" step="0.1" value="7.9" oninput="syncInput('v4_p', this.value); document.getElementById('val_price_p').textContent = this.value;">
+                <span class="slider-value" id="val_price_p">7.9</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Base</span>
+                <input type="range" min="5" max="12" step="0.1" value="8.9" oninput="syncInput('v4_b', this.value); document.getElementById('val_price_b').textContent = this.value;">
+                <span class="slider-value" id="val_price_b">8.9</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Optimista</span>
+                <input type="range" min="5" max="12" step="0.1" value="9.9" oninput="syncInput('v4_o', this.value); document.getElementById('val_price_o').textContent = this.value;">
+                <span class="slider-value" id="val_price_o">9.9</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="scenario-section-box">
+        <h3 class="scenario-title">Valor Inicial de Plaza</h3>
+        <div class="scenario-controls">
+            <div class="sc-item">
+                <span class="sc-label">Pesimista</span>
+                <input type="range" id="ctrl_v9_p" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('p', this.value)">
+                <span id="val_v9_p" class="slider-value">$100,000</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Base</span>
+                <input type="range" id="ctrl_v9_b" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('b', this.value)">
+                <span id="val_v9_b" class="slider-value">$100,000</span>
+            </div>
+            <div class="sc-item">
+                <span class="sc-label">Optimista</span>
+                <input type="range" id="ctrl_v9_o" min="50000" max="200000" step="5000" value="100000" oninput="syncValorPlaza('o', this.value)">
+                <span id="val_v9_o" class="slider-value">$100,000</span>
+            </div>
+        </div>
+    </div>
+
 </div>
-<div class="summary-header">
-    <small class="currency-label">TIPO DE MONEDA: MXN</small>
-</div>
-    <div class="triple-summary">
+    <!-- HEADER -->
+    <div class="summary-header">
+        <small class="currency-label">TIPO DE MONEDA: MXN</small>
+    </div>
 
-        <!-- ESCENARIO 1 -->
-        <div class="summary-card">
-            <h4>1. Venta de Electricidad</h4>
-            <p class="desc">Flujo mensual recurrente por uso de cargadores</p>
 
-            <table>
-                <tr><th>PESIMISTA</th><th>BASE</th><th>OPTIMISTA</th></tr>
-                <tr>
-                    <td id="kpi_u_p">$0</td>
-                    <td id="kpi_u_b">$0</td>
-                    <td id="kpi_u_o">$0</td>
-                </tr>
-            </table>
+    <!-- RESULTADOS -->
+   <div class="triple-summary">
+
+    <div class="summary-card">
+        <h4>1. Venta de Electricidad</h4>
+        <div class="card-detail-list">
+            <span><strong id="det_kwh_b">0</strong> kWh/mes</span>
+            <span>Margen: <strong id="det_margin_b">0%</strong></span>
         </div>
 
-        <!-- ESCENARIO 2 -->
-        <div class="summary-card highlight">
-            <h4>2. Plusvalía del Activo (Exit)</h4>
-            <p class="desc">Incremento del valor del estacionamiento equipado</p>
+        <table>
+            <tr><th>PESIMISTA</th><th>BASE</th><th>OPTIMISTA</th></tr>
+            <tr>
+                <td id="kpi_u_p">$0</td>
+                <td id="kpi_u_b">$0</td>
+                <td id="kpi_u_o">$0</td>
+            </tr>
+        </table>
+        <p class="desc">Utilidad neta mensual tras gastos y royalties.</p>
+    </div>
 
-            <table>
-                <tr><th>PESIMISTA</th><th>BASE</th><th>OPTIMISTA</th></tr>
-                <tr>
-                    <td id="kpi_x_p">$0</td>
-                    <td id="kpi_x_b">$0</td>
-                    <td id="kpi_x_o">$0</td>
-                </tr>
-            </table>
-
-            <small>
-                Inversión inicial: <span id="pv_inv_b"></span> ·
-                Horizonte: <span id="pv_t_b"></span>
-            </small>
+    <div class="summary-card highlight">
+        <h4>2. Plusvalía del Activo (Exit)</h4>
+        <div class="card-detail-list">
+            <span>Payback: <strong id="det_payback_b">0 meses</strong></span>
+            <span>Multiplicador: <strong id="det_plus_b">0x</strong></span>
         </div>
 
-        <!-- ESCENARIO 3 -->
-        <div class="summary-card">
-            <h4>3. Comisiones y Referidos</h4>
-            <p class="desc">Ingresos paralelos por red comercial</p>
+        <table>
+            <tr><th>PESIMISTA</th><th>BASE</th><th>OPTIMISTA</th></tr>
+            <tr>
+                <td id="kpi_x_p">$0</td>
+                <td id="kpi_x_b">$0</td>
+                <td id="kpi_x_o">$0</td>
+            </tr>
+        </table>
+        <small>
+            Inversión: <span id="pv_inv_b"></span> · 
+            Horizonte: <span id="pv_t_b">5 años</span>
+        </small>
+    </div>
 
-            <table>
-                <tr><th>PESIMISTA</th><th>BASE</th><th>OPTIMISTA</th></tr>
-                <tr>
-                    <td id="kpi_c_p">$0</td>
-                    <td id="kpi_c_b">$0</td>
-                    <td id="kpi_c_o">$0</td>
-                </tr>
-            </table>
+    <div class="summary-card">
+        <h4>3. Comisiones y Referidos</h4>
+        <div class="card-detail-list">
+            <span>Referidos: <strong id="det_ref_b">0</strong> uds.</span>
+            <span>Variable: <strong id="det_com_var_b">$0</strong></span>
         </div>
 
+        <table>
+            <tr><th>PESIMISTA</th><th>BASE</th><th>OPTIMISTA</th></tr>
+            <tr>
+                <td id="kpi_c_p">$0</td>
+                <td id="kpi_c_b">$0</td>
+                <td id="kpi_c_o">$0</td>
+            </tr>
+        </table>
+        <p class="desc">Ingresos adicionales por red y gestión.</p>
     </div>
 </div>
+<div class="comparison-container">
+    <h3 class="comparison-title">Comparativa de Indicadores Clave</h3>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Métrica Operativa</th>
+                <th class="col-p">Pesimista</th>
+                <th class="col-b">Base</th>
+                <th class="col-o">Optimista</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Energía Total (kWh/mes)</td>
+                <td id="comp_kwh_p">0</td>
+                <td id="comp_kwh_b">0</td>
+                <td id="comp_kwh_o">0</td>
+            </tr>
+            <tr>
+                <td>Margen de Energía (%)</td>
+                <td id="comp_margin_p">0%</td>
+                <td id="comp_margin_b">0%</td>
+                <td id="comp_margin_o">0%</td>
+            </tr>
+            <tr>
+                <td>Tiempo de Retorno (Payback)</td>
+                <td id="comp_pay_p">-</td>
+                <td id="comp_pay_b">-</td>
+                <td id="comp_pay_o">-</td>
+            </tr>
+            <tr>
+                <td>TIR Operativa (%)</td>
+                <td id="comp_tir_p">0%</td>
+                <td id="comp_tir_b">0%</td>
+                <td id="comp_tir_o">0%</td>
+            </tr>
+            <tr>
+                <td>Plusvalía del Activo (x veces)</td>
+                <td id="comp_plus_p">0x</td>
+                <td id="comp_plus_b">0x</td>
+                <td id="comp_plus_o">0x</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 <!-- Contenedor del gráfico -->
 <div class="grafico-box">
     <canvas id="graficaGanancias"></canvas>
 </div>
-    <button class="reset-btn" onclick="resetEditable()">Resetear valores</button>
+
+<div class="chart-highlight">
+    <h3><center>Proyección de ganancias a 5 años</center></h3>
+    <center>Escenario Base</center>
+    <canvas id="graficoFlujo"></canvas>
+</div>
+
+<div class="interpretacion-box">
+    <h3>¿Qué significa esto?</h3>
+    <div id="interpretacion"></div>
+</div>
+<div>
+    <center><button class="reset-btn" onclick="resetEditable()">Resetear valores</button> </center>
+</div>
+
     <!-- ================= RESUMEN ESTRATÉGICO DEL COMPRADOR ================= -->
 
 <hr class="table-divider">
@@ -131,7 +242,7 @@
         </thead>
         <tbody>
             <tr class="sec"><td colspan="5">1. PREMISAS DE VENTA</td></tr>
-            <tr><td class="lbl">Número de Cargadores</td><td><input type="number" id="v1_p" class="edit" value="2"></td><td><input type="number" id="v1_b" class="edit" value="4"></td><td><input type="number" id="v1_o" class="edit" value="6"></td><td>Unidades</td></tr>
+            <tr><td class="lbl">Número de tomas</td><td><input type="number" id="v1_p" class="read" value="2"></td><td><input type="number" id="v1_b" class="read" value="4"></td><td><input type="number" id="v1_o" class="read" value="6"></td><td>Unidades</td></tr>
             <tr><td class="lbl">Porcentaje de utilización</td>
                 <td><input id="v2_p" class="read" value="3%"></td>
                 <td><input id="v2_b" class="read" value="5%"></td>
@@ -140,8 +251,8 @@
                 <td><input type="number" id="v3_p" class="read" value="500"></td>
                 <td><input type="number" id="v3_b" class="read" value="1000"></td>
                 <td><input type="number" id="v3_o" class="read" value="1500"></td><td>kWh/mes</td></tr>
-            <tr><td class="lbl">Precio de venta (PVP)</td><td><input type="number" id="v4_p" class="edit" value="7.90"></td><td><input type="number" id="v4_b" class="edit" value="8.90"></td><td><input type="number" id="v4_o" class="edit" value="9.90"></td><td>MXN/kWh</td></tr>
-            <tr><td class="lbl">Costo de compra electricidad</td><td><input type="number" id="v5_p" class="edit" value="4.90"></td><td><input type="number" id="v5_b" class="edit" value="3.90"></td><td><input type="number" id="v5_o" class="edit" value="2.90"></td><td>MXN/kWh</td></tr>
+            <tr><td class="lbl">Precio de venta (PVP)</td><td><input type="number" id="v4_p" class="read" value="7.90"></td><td><input type="number" id="v4_b" class="read" value="8.90"></td><td><input type="number" id="v4_o" class="read" value="9.90"></td><td>MXN/kWh</td></tr>
+            <tr><td class="lbl">Costo de compra electricidad</td><td><input type="number" id="v5_p" class="read" value="4.90"></td><td><input type="number" id="v5_b" class="read" value="3.90"></td><td><input type="number" id="v5_o" class="read" value="2.90"></td><td>MXN/kWh</td></tr>
             <tr><td class="lbl">Margen simple por electricidad</td><td><input id="v6_p" class="read"></td><td><input id="v6_b" class="read"></td><td><input id="v6_o" class="read"></td><td>%</td></tr>
             <tr><td class="lbl">Ajuste precios por inflación</td>
                 <td><input id="v7_p" class="read" value="6%"></td>
@@ -367,9 +478,9 @@
             </tr>
             <tr>
             <td class="lbl">Valor Inicial</td>
-            <td><input id="v9_3_p" class="read"></td>
-            <td><input id="v9_3_b" class="read"></td>
-            <td><input id="v9_3_o" class="read"></td>
+            <td><input type="number" id="v9_3_p" class="edit" value="100000"></td>
+            <td><input type="number" id="v9_3_b" class="edit" value="100000"></td>
+            <td><input type="number" id="v9_3_o" class="edit" value="100000"></td>
             <td>100K por plaza - parking vacío</td>
             </tr>
             <tr>

@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'XcelentricFont';
+    src: url('/fonts/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
 
 :root {
     --yellow: #f4c430;          /* Amarillo Xcelentric */
@@ -12,7 +18,7 @@
 
 /* Fondo */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'XcelentricFont', Arial, Helvetica, sans-serif;
     font-size: 12px;
     background: linear-gradient(180deg,#f3f4f6,#ffffff);
     padding: 40px 20px;
@@ -385,13 +391,16 @@ tbody td:nth-child(5) {
 
 /* Cada bloque de control */
 .sc-item {
-    background: var(--yellow-soft);
-    border: 1px solid var(--yellow-soft);
-    padding: 6px 10px;
-    border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: space-between; /* Empuja el texto a los bordes */
+    gap: 10px;                      /* Espacio entre etiqueta, slider y valor */
+    width: 100%;                    /* Ocupa todo el ancho de la tarjeta */
+    box-sizing: border-box;         /* Importante: incluye el padding en el ancho */
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid #f3e7b0;
+    border-radius: 10px;
 }
 
 /* Label dentro de control */
@@ -433,17 +442,15 @@ tbody td:nth-child(5) {
 }
 /* Recuadro que encierra los controles */
 .scenario-section-box {
-    display: block;                 /* ocupa ancho de su contenido */
-    padding: 6px 8px;
-    border: 2px solid var(--yellow);
-    border-radius: 12px;
-    background: var(--yellow-soft);
+    padding: 14px 18px;
+    border: 1px solid #f1e3a0;
+    border-radius: 14px;
+    background: linear-gradient(180deg,#fffdf5,#ffffff);
     text-align: center;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    width: fit-content;             /* se ajusta al tamaño de los controles */
-    margin: 0 auto 30px auto;       /* centrado horizontal */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    width: fit-content;
+    margin: 0 auto 30px auto;
 }
-
 /* Título dentro del recuadro */
 .scenario-section-box .scenario-title {
     margin-bottom: 4px;
@@ -464,6 +471,7 @@ tbody td:nth-child(5) {
     width: 100%;
     height: 100%;
     display: block;
+    max-width:100%;
 }
 .summary-header .currency-label {
     display: block;
@@ -473,6 +481,206 @@ tbody td:nth-child(5) {
     text-align: center;
     letter-spacing: 0.5px;
     margin-bottom: 4px;
-    font-family: Arial, sans-serif;
+    font-family: 'XcelentricFont', Arial, sans-serif;
     text-transform: uppercase;
+}
+
+/* ===== SLIDER XCELENTRIC PRO ===== */
+
+.sc-item input[type="range"]{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 130px;
+    height: 4px; /* más delgado */
+    background: linear-gradient(90deg,var(--yellow),#ffe48f);
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    flex: 1;              /* El slider toma todo el espacio disponible al centro */
+    min-width: 50px;      /* Evita que desaparezca en pantallas muy pequeñas */
+    max-width: 150px;
+}
+
+/* barra */
+.sc-item input[type="range"]::-webkit-slider-runnable-track{
+    height:4px;
+    border-radius:10px;
+}
+
+/* thumb */
+.sc-item input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:14px;     /* más pequeño */
+    height:14px;
+    border-radius:50%;
+    background: var(--gray-800);
+    border:2px solid var(--yellow);
+    margin-top:-5px;
+    transition:all .15s ease;
+}
+
+/* hover */
+.sc-item input[type="range"]::-webkit-slider-thumb:hover{
+    transform: scale(1.2);
+}
+
+/* firefox */
+.sc-item input[type="range"]::-moz-range-thumb{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background: var(--gray-800);
+    border:2px solid var(--yellow);
+}
+
+/* Número al lado del slider */
+.slider-value{
+    font-weight:800;
+    font-size:13px;
+    min-width:40px;
+    text-align:center;
+    color: var(--gray-800);
+}
+
+.interpretacion-box{
+
+background:#fff8db;
+border-left:6px solid #f4c430;
+padding:20px;
+margin-top:25px;
+border-radius:8px;
+font-size:16px;
+line-height:1.6;
+
+}
+.chart-highlight {
+
+    background: linear-gradient(135deg,#fcfaf2,#ffffff);
+    border: 2px solid #ffdb70;
+
+    max-width: 950px;
+    margin: 0 auto 50px;
+    padding: 22px;
+
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+    height: 380px;
+
+    position: relative; /* CLAVE para Chart.js */
+    overflow: hidden;
+}
+
+/* control del canvas */
+.chart-highlight canvas{
+    width:100% !important;
+    height:100% !important;
+}
+.grafico-box{
+    display:none;
+}
+/* Esto fuerza las 3 columnas */
+.simulation-controls {
+    display: flex;
+    flex-direction: row;      /* En fila */
+    flex-wrap: wrap;         /* Si no caben, bajan (útil en móviles) */
+    gap: 20px;               /* Espacio entre tarjetas */
+    justify-content: center; /* Centradas */
+    align-items: stretch;    /* Todas del mismo alto */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+}
+
+/* Ajuste de las tarjetas */
+.scenario-section-box {
+    flex: 1;                 /* Se distribuyen el ancho equitativamente */
+    min-width: 320px;        /* Evita que se aplasten demasiado */
+    margin: 0 !important;    /* Quitamos el margin auto que tenías */
+}
+
+/* Alineación interna (Labels arriba del slider si el espacio es poco) */
+.scenario-controls {
+    display: flex;
+    flex-direction: column;  /* Sliders uno debajo del otro dentro de la tarjeta */
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Mejora para el item individual */
+.sc-item {
+    justify-content: space-between; /* Label a la izquierda, número a la derecha */
+    width: 100%;
+}
+.card-details {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.detail-row strong {
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.summary-card.highlight .detail-row {
+    color: #444; /* Mejor contraste en la tarjeta resaltada */
+}
+.comparison-container {
+    margin: 30px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.comparison-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-table th {
+    background: #f8f9fa;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Colores por columna para guiar el ojo */
+.col-p { border-bottom: 3px solid #e74c3c !important; } /* Rojo */
+.col-b { border-bottom: 3px solid #3498db !important; } /* Azul */
+.col-o { border-bottom: 3px solid #27ae60 !important; } /* Verde */
+
+.comparison-table tr:hover {
+    background-color: #fcfcfc;
+}
+
+.comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: #555;
+    width: 30%;
 }
