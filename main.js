@@ -455,12 +455,17 @@ calculate();
     window.onload = calculate;
 
     // Sincronizar Slider de Velocidad de Carga (v11)
-function syncVelocidad(suffix, value) {
-    value = parseFloat(value);
-    // Actualiza el campo oculto de la tabla
+const velocidades = [3.7, 7.4, 11, 22, 30, 50, 120, 180];
+
+function syncVelocidad(suffix, index) {
+
+    const value = velocidades[index];
+
     document.getElementById(`v11_${suffix}`).value = value;
-    // Actualiza el texto debajo del slider
-    document.getElementById(`val_v11_${suffix}`).textContent = value + " kW";
+
+    document.getElementById(`val_v11_${suffix}`).textContent =
+        value + " kW";
+
     calculate();
 }
 
